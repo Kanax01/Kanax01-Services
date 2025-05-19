@@ -50,7 +50,8 @@
             padding: 1.5rem;
             border-radius: 8px;
             border: 1px solid #333;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            cursor: pointer;
         }
         
         .service:hover {
@@ -74,6 +75,19 @@
             margin-top: 0.5rem;
         }
         
+        .request-btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: #000;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-top: 1rem;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+        
         footer {
             text-align: center;
             margin-top: 3rem;
@@ -81,6 +95,53 @@
             border-top: 1px solid #333;
             font-size: 0.9rem;
             color: #888;
+        }
+
+        /* Hack Chromebook modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+        }
+        
+        .modal-content {
+            background-color: var(--darker-bg);
+            margin: 10% auto;
+            padding: 2rem;
+            border: 1px solid var(--primary);
+            width: 80%;
+            max-width: 700px;
+            border-radius: 8px;
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            color: var(--primary);
+        }
+        
+        pre {
+            background: #1e1e1e;
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            border-left: 3px solid var(--primary);
+        }
+        
+        code {
+            font-family: 'Courier New', monospace;
+            color: #f8f8f2;
         }
     </style>
 </head>
@@ -93,29 +154,89 @@
         
         <main>
             <div class="services">
-                <div class="service">
-                    <h2>Removing Screen Time</h2>
-                    <p>Completely remove screen time restrictions from any device.</p>
+                <div class="service" onclick="contact('Screen Time Removal Help')">
+                    <h2>Screen Time Removal</h2>
+                    <p>Bypass or remove screen time restrictions on iOS/Android devices.</p>
                     <span class="free-badge">FREE</span>
+                    <button class="request-btn" onclick="event.stopPropagation();contact('Screen Time Removal Help')">Make Request</button>
                 </div>
                 
-                <div class="service">
-                    <h2>Website Creation</h2>
-                    <p>Custom website design and development tailored to your needs.</p>
+                <div class="service" onclick="contact('Website Development Request')">
+                    <h2>Website Development</h2>
+                    <p>Simple website creation for personal or small business use.</p>
                     <span class="free-badge">FREE</span>
+                    <button class="request-btn" onclick="event.stopPropagation();contact('Website Development Request')">Make Request</button>
                 </div>
                 
-                <div class="service">
-                    <h2>Chromebook Hacking</h2>
-                    <p>Unlock full potential of your Chromebook with custom modifications.</p>
+                <div class="service" onclick="showChromebookHacks()">
+                    <h2>Hack Chromebook</h2>
+                    <p>Jailbreak, bypass GoGuardian, and other Chromebook hacks.</p>
                     <span class="free-badge">FREE</span>
+                    <button class="request-btn" onclick="event.stopPropagation();contact('Chromebook Hack Request')">Make Request</button>
                 </div>
             </div>
         </main>
         
         <footer>
-            <p>© 2023 Kanax01 Services | All services provided free of charge</p>
+            <p>© 2025 Kanax01 Services | All services provided free of charge</p>
         </footer>
     </div>
+
+    <!-- Hack Chromebook Modal -->
+    <div id="hackModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 style="color: var(--primary); margin-top: 0;">Chromebook Hacking Services</h2>
+            
+            <div class="service">
+                <h3>Jailbreak Chromebook</h3>
+                <p>Full developer mode unlock and Linux installation.</p>
+                <pre><code>1. Enter Recovery Mode (ESC + Refresh + Power)
+2. Press Ctrl+D to enable Developer Mode
+3. After reboot, install Crouton/Linux</code></pre>
+            </div>
+            
+            <div class="service">
+                <h3>Bypass GoGuardian</h3>
+                <p>Methods to bypass school monitoring:</p>
+                <pre><code>- Use WebSocket proxies (wss://)
+- Mobile hotspot tethering
+- Linux live boot from USB</code></pre>
+            </div>
+            
+            <div class="service">
+                <h3>HTML/Bookmarklet Tools</h3>
+                <p>Stealth browsing tools:</p>
+                <pre><code>javascript:(function(){
+  document.title = "Google Classroom";
+  // Tab cloaking code
+})();</code></pre>
+                <button class="request-btn" onclick="contact('Chromebook Hack Request')">Request Custom Solution</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function contact(subject) {
+            const email = '66stuff88@gmail.com';
+            const body = `Hello Kanax01,\n\nI would like to request your help with: ${subject}\n\nDetails:\n- Device/Software: \n- Specific Needs: \n- Deadline (if any): \n\nAdditional notes:`;
+            window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+        
+        function showChromebookHacks() {
+            document.getElementById('hackModal').style.display = 'block';
+        }
+        
+        function closeModal() {
+            document.getElementById('hackModal').style.display = 'none';
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('hackModal')) {
+                closeModal();
+            }
+        }
+    </script>
 </body>
 </html>
