@@ -19,6 +19,7 @@
             margin: 0;
             padding: 0;
             line-height: 1.6;
+            overflow-x: hidden;
         }
         
         .container {
@@ -107,16 +108,19 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0,0,0,0.8);
+            overflow: auto;
         }
         
         .modal-content {
             background-color: var(--darker-bg);
-            margin: 10% auto;
+            margin: 5% auto;
             padding: 2rem;
             border: 1px solid var(--primary);
             width: 80%;
             max-width: 700px;
             border-radius: 8px;
+            max-height: 80vh;
+            overflow-y: auto;
         }
         
         .close {
@@ -137,11 +141,31 @@
             border-radius: 5px;
             overflow-x: auto;
             border-left: 3px solid var(--primary);
+            white-space: pre-wrap;
+            word-wrap: break-word;
         }
         
         code {
             font-family: 'Courier New', monospace;
             color: #f8f8f2;
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--darker-bg);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00cc70;
         }
     </style>
 </head>
@@ -194,6 +218,7 @@
                 <pre><code>1. Enter Recovery Mode (ESC + Refresh + Power)
 2. Press Ctrl+D to enable Developer Mode
 3. After reboot, install Crouton/Linux</code></pre>
+                <p><strong>Note:</strong> This will wipe all local data.</p>
             </div>
             
             <div class="service">
@@ -201,16 +226,37 @@
                 <p>Methods to bypass school monitoring:</p>
                 <pre><code>- Use WebSocket proxies (wss://)
 - Mobile hotspot tethering
-- Linux live boot from USB</code></pre>
+- Linux live boot from USB
+- DNS-over-HTTPS (Cloudflare/Google DNS)</code></pre>
+                <p><strong>Warning:</strong> Some methods may be detected by your school.</p>
             </div>
             
             <div class="service">
                 <h3>HTML/Bookmarklet Tools</h3>
                 <p>Stealth browsing tools:</p>
-                <pre><code>javascript:(function(){
+                <pre><code>// Tab Cloaker Bookmarklet
+javascript:(function(){
   document.title = "Google Classroom";
-  // Tab cloaking code
+  const icon = document.querySelector("link[rel*='icon']") || 
+               document.createElement('link');
+  icon.type = 'image/x-icon';
+  icon.rel = 'shortcut icon';
+  icon.href = 'https://classroom.google.com/favicon.ico';
+  document.head.appendChild(icon);
 })();</code></pre>
+                <p>Create a bookmark with this code to disguise tabs.</p>
+            </div>
+
+            <div class="service">
+                <h3>More Chromebook Hacks</h3>
+                <p>Additional techniques:</p>
+                <pre><code>- Crosh command tricks (shell commands)
+- Android app debugging mode
+- Force-install Chrome extensions
+- Disable forced updates</code></pre>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
                 <button class="request-btn" onclick="contact('Chromebook Hack Request')">Request Custom Solution</button>
             </div>
         </div>
@@ -219,16 +265,18 @@
     <script>
         function contact(subject) {
             const email = '66stuff88@gmail.com';
-            const body = `Hello Kanax01,\n\nI would like to request your help with: ${subject}\n\nDetails:\n- Device/Software: \n- Specific Needs: \n- Deadline (if any): \n\nAdditional notes:`;
+            const body = `Hello Kanax01,\n\nI would like to request your help with: ${subject}\n\nDetails:\n- Device Model: \n- ChromeOS Version: \n- Specific Needs: \n\nAdditional notes:`;
             window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         }
         
         function showChromebookHacks() {
             document.getElementById('hackModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
         }
         
         function closeModal() {
             document.getElementById('hackModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
         }
         
         // Close modal when clicking outside
