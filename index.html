@@ -40,14 +40,6 @@
             margin-bottom: 0.5rem;
         }
         
-        .special-offer {
-            background-color: var(--darker-bg);
-            padding: 1rem;
-            border-radius: 8px;
-            margin: 1rem 0;
-            border-left: 4px solid var(--primary);
-        }
-        
         .services {
             display: grid;
             gap: 1.5rem;
@@ -71,9 +63,14 @@
             margin-top: 0;
         }
         
-        .price {
+        .free-badge {
+            display: inline-block;
+            background-color: var(--primary);
+            color: #000;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
             font-weight: bold;
-            color: var(--primary);
+            font-size: 0.8rem;
             margin-top: 0.5rem;
         }
         
@@ -91,9 +88,7 @@
     <div class="container">
         <header>
             <h1>Kanax01 Services</h1>
-            <div class="special-offer">
-                <strong>FIRST 20 PEOPLE GET EVERYTHING FREE!</strong>
-            </div>
+            <p>Quality services provided completely free</p>
         </header>
         
         <main>
@@ -101,25 +96,25 @@
                 <div class="service">
                     <h2>Removing Screen Time</h2>
                     <p>Completely remove screen time restrictions from any device.</p>
-                    <div class="price">$5</div>
+                    <span class="free-badge">FREE</span>
                 </div>
                 
                 <div class="service">
                     <h2>Website Creation</h2>
                     <p>Custom website design and development tailored to your needs.</p>
-                    <div class="price">$10-$20</div>
+                    <span class="free-badge">FREE</span>
                 </div>
                 
                 <div class="service">
                     <h2>Chromebook Hacking</h2>
                     <p>Unlock full potential of your Chromebook with custom modifications.</p>
-                    <div class="price">$10</div>
+                    <span class="free-badge">FREE</span>
                 </div>
             </div>
         </main>
         
         <footer>
-            <p>© 2023 Kanax01 Services | Contact for inquiries</p>
+            <p>© 2023 Kanax01 Services | All services provided free of charge</p>
         </footer>
     </div>
 </body>
